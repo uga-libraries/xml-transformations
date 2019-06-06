@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Collection-level information to add to combined c01's for broadsides finding aid-->
+
+<ead>
+	<eadheader findaidstatus="Completed" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b">
+        <eadid/>
+		<filedesc>
+			<titlestmt>
+        		<titleproper><num>INSERT IDENTIIFER</num></titleproper>
+        	</titlestmt>
+			<publicationstmt>
+				<publisher>Hargrett Rare Books</publisher>
+        	</publicationstmt>
+		</filedesc>
+	</eadheader>
+	<archdesc level="collection">
+		<did>
+			<unittitle>INSERT COLLECTION TITLE</unittitle>
+			<unitid>INSERT IDENTIFIER</unitid>
+			<repository><corpname>Hargrett Rare Books</corpname></repository>
+			<physdesc><extent>2,078 items</extent></physdesc>
+			<unitdate normal="1762/1989">1762-1989</unitdate>
+		</did>
+		INSERT DSC HERE
+	</archdesc>
+</ead>
