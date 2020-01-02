@@ -1,0 +1,17 @@
+This is the structure of xml which is being transformed:
+
+<pbcoreInstantiationDocument>
+	<instantiationIdentifier source="File Name">
+	<instantiationIdentifier source="SegmentUID">
+	<instantiationDate dateType="file modification">
+	<instantiationDigital>
+	<instantiationStandard annotation="Version 4">
+	<instantiationLocation>
+	<instantiationMediaType>
+	<instantiationFileSize unitsOfMeasure="byte">
+	<instantiationDuration>
+	<instantiationDataRate unitsOfMeasure="bit/second" annotation="VBR">
+	<instantiationTracks>
+	<instantiationChannelConfiguration>
+	<instantiationEssenceTrack> (repeatable)
+		several essenceTrack element (none are used in transformation)
