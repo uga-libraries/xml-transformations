@@ -12,3 +12,6 @@ Takes a folder of xml files and transforms them to EAD files (a different XML st
 
 ## Multiple XML to One EAD
 Takes a folder of xml files and combines them into one EAD file.
+
+## PBCore to CSV
+Takes a folder of PBCore xml files, extracts data from select fields and transforms if needed, and saves to a CSV file, one row per PBCore file.
