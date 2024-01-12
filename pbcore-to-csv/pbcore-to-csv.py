@@ -1,9 +1,14 @@
-# Convert PBCore XML to CSV
-# Script to select specified content from each PBCore xml metadata file in a target directory and output that content to one combined csv file.
-# Developed for Brown Media Archives 2019 NHPRC project
-# Written for Python 3.7
-# Usage: python3 '/path/pbcore_to_csv.py' 'path/target_directory'
+"""Extracts portions of data from PBCore XML files and saves to a single CSV spreadsheet.
 
+This script was created for the Brown Media Archives NHPRC project.
+
+Parameters:
+    * target_directory: the path to the folder containing the PBCore XML files
+
+Returns:
+    The output is one CSV file (combined-pbcore-records.csv) with data from every XML in the folder,
+    saved to a folder (csv_output) in the same folder as the folder with the PBCore XML.
+"""
 import csv
 import os
 import re
