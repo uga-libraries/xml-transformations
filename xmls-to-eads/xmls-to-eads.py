@@ -10,7 +10,6 @@ Before running the script, put all xml files to be included in the csv into a fo
 Enter the path for that folder in line 18.
 Also enter the path for the xslt processor and xslt stylesheet (lines 20-21).
 """
-
 import os
 import pathlib
 import re
@@ -25,7 +24,7 @@ os.chdir(xml_directory)
 
 # count the number of copies of each map, where filenames are formatted idcopy#.xml.
 # base is the filename without the 'copy#' part. Ex: base of hmapab12copy2.xml is hmapab12.xml
-base_list=[]
+base_list = []
 
 for file in os.listdir(xml_directory):
     # find the string 'copy' followed by a single digit and replace it with nothing to remove it. 
@@ -33,7 +32,7 @@ for file in os.listdir(xml_directory):
     base_list.append(file_base)
 
 # the number of times each base appears is saved to a dictionary for later reference.
-base_count = {i:base_list.count(i) for i in base_list}
+base_count = {i: base_list.count(i) for i in base_list}
 
 # iterate over each xml file and use xslt stylesheet to make the EAD.
 for file in os.listdir(xml_directory):
@@ -47,4 +46,5 @@ for file in os.listdir(xml_directory):
     # run stylesheet on XML file to produce an EAD file.
     # the EAD file is named mapid-ead.xml, for example hmapab12-ead.xml.
     # count is a parameter that passes the number of copies to the stylesheet so it can be included in the EAD.
-    subprocess.run(f'java -cp {saxon} net.sf.saxon.Transform -s:{file} -xsl:{stylesheet} -o:../{pathlib.Path(file).stem}-ead.xml count="{count}"', shell=True)
+    subprocess.run(f'java -cp {saxon} net.sf.saxon.Transform -s:{file} -xsl:{stylesheet} '
+                   f'-o:../{pathlib.Path(file).stem}-ead.xml count="{count}"', shell=True)
