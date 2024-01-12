@@ -1,13 +1,18 @@
 # Purpose: take data from multiple xml files and combine them into a single dsc section of an EAD finding aid.
 
-"""
-This script was used to create a single finding aid for a group of items that were described individually in a database. The database exported one xml file per item.
+"""Combine data from multiple Dublin Core XML files into a single dsc section for an EAD finding aid.
 
-The xml this script is designed for had all elements as direct children of the root. Some elements were optional and some could be repeated.
+This script was used to create a single finding aid for a group of items that were described individually in a database.
+The database exported one xml file per item.
+
+The xml this script is designed for had all elements as direct children of the root.
+Some elements were optional and some could be repeated.
     
-Before running the script, put all xml files to be included in the EAD into a folder. Enter the path for that folder in line 17.
+Before running the script, put all xml files to be included in the EAD into a folder.
+Enter the path for that folder in line 17.
 
-After running the script, paste everything into an xml file that has the collection-level elements needed to be able to import it into Archivists' Toolkit for further editing.
+After running the script, paste everything into an xml file (template-ead.xml in this repo)
+that has the collection-level elements needed to be able to import it into Archivists' Toolkit for further editing.
 """
 
 import xml.etree.ElementTree as ET
