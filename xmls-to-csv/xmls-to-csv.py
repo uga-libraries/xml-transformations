@@ -1,11 +1,14 @@
-# Purpose: copy data from multiple xml files into a single csv, 1 row per xml file, for data analysis.
+"""Copy data from multiple Dublin Core XML files into a single CSV spreadsheet.
 
-"""
-Before doing transformations on a batch of xml, we want to know if there are complications in the data to address. This can be quickly done by opening the csv in a spreadsheet and sorting and/or filtering each column. Look for things like empty fields, abbreviations to spell out, and different ways that dates or other data are formatted.
+This script was created to get a quick overview f the contents of XML before doing batch transformations,
+to identify any complications that need to be addressed.
+Look for things like empty fields, abbreviations to spell out, and different ways that dates are formatted.
 
-The xml this script is designed for had all elements as direct children of the root. All elements could be optional and could be repeated.
+The xml this script is designed for had all elements as direct children of the root.
+All elements could be optional and could be repeated.
     
-Before running the script, put all xml files to be included in the csv into a folder. Enter the path for that folder in line 10.
+Before running the script, put all xml files to be included in the csv into a folder.
+Enter the path for that folder in line 10.
 """
 
 import os
