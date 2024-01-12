@@ -1,8 +1,15 @@
-# Read every xml file in a folder, find a particular element, and replace its value with a different value.
-# This is replacing the value in the original XML file.
+"""Replaces the value of a single element with a different value for every XML file in a folder.
 
-# Script usage: python path/xml-element-value-replacement.py path/xml_folder
+This script currently replaces dates of 2012 with 1912,
+but has patterns for finding different kinds of elements to use for new scripts.
 
+Parameters:
+    xml_folder: path to the folder with the XML to be updated
+
+Returns:
+
+    The script will overwrite the existing XML file with the updated value and create a log of the changes.
+"""
 import csv
 import os
 import sys
