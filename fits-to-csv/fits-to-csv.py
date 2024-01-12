@@ -1,6 +1,15 @@
-# Written for Python 3.7.1.
-# Script to select specified content from each FITS xml metadata file in a target directory and output that content to one combined csv file with one row per xml file.
-# Takes two arguments: 1) script name (xml_to_csv.py) and 2) target directory containing xml files
+"""Extracts portions of data from FITS XML files and saves to a CSV spreadsheet.
+
+This script was created for a format analysis project.
+It gets format information for each file in the FITS XML and saves it as a row in a CSV.
+
+Parameters:
+    * target_directory: the path to the folder containing the FITS XML files
+
+Returns:
+    The output is one CSV file (combined-file-formats.csv) with data from every XML in the folder,
+    saved to a folder (csv_output) in the parent folder of the folder with the FITS XML.
+"""
 import os
 import os.path
 import xml.etree.ElementTree as ET
