@@ -14,7 +14,6 @@ Enter the path for that folder in line 17.
 After running the script, paste everything into an xml file (template-ead.xml in this repo)
 that has the collection-level elements needed to be able to import it into Archivists' Toolkit for further editing.
 """
-
 import xml.etree.ElementTree as ET
 import os
 import re
@@ -29,7 +28,7 @@ combo_root = combo.getroot()
 for xml in os.listdir(xml_directory):
 
     # read the xml file.
-    ET.register_namespace('xtf',"http://cdlib.org/xtf")
+    ET.register_namespace('xtf', "http://cdlib.org/xtf")
     tree = ET.parse(f'{xml_directory}/{xml}')
     root = tree.getroot()
     
