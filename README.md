@@ -2,10 +2,10 @@
 
 ## Overview
 
-Python scripts for working with XML, including transforming the data to CSVs, to EAD, and update values.
+Python scripts for working with XML, including transforming the data to CSVs, to EAD, and updating element values.
 These were quickly developed for a one-time use, and are retained as a starting point for future scripts.
 
-See also the FITS to preservation.xml transformation in [General AIP script](https://github.com/uga-libraries/general-aip)
+See also the FITS to preservation.xml transformation in the [General AIP script](https://github.com/uga-libraries/general-aip).
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ See also the FITS to preservation.xml transformation in [General AIP script](htt
 Most of these scripts only use standard Python libraries.
 The ElementTree library is used for working with the XML.
 
-xmls-to-eads.py uses Saxon for XSLT transformations: [https://www.saxonica.com/](https://www.saxonica.com/)
+xmls-to-eads.py uses Saxon for the XSLT transformation: [https://www.saxonica.com/](https://www.saxonica.com/)
 
 ### Installation
 
@@ -47,20 +47,20 @@ pbcore-to-csv.py
 
 xml-element-value-replacement.py
    * xml_folder (required): folder containing the XML to be transformed
-   * Update the element being search for using the root.find() lines as an example.
+   * Update the element being searched for using the root.find() lines as an example.
 
 ### Testing
 
 Run the script on a small amount of your data, so you can easily predict the results, before running on a batch.
 
-These scripts were written before we had procedures for creating testing procedures.
+These scripts were written before we had a process for creating testing procedures.
 Additional testing guidance or unit tests will be written if they start getting used again.
 
 ## Workflow
 
 The majority of the scripts get the contents from every XML file in a folder, edit the data, 
 and export it to either a CSV file or EAD file(s).
-The exception is xml-element-value-replacement.py, which updates the value of an element in an XML file.
+The exception is xml-element-value-replacement.py, which updates the value of an element in every XML file.
 
 See the comments at the top of each script for further details.
 
