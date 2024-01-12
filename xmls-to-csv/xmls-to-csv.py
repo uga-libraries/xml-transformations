@@ -10,7 +10,6 @@ All elements could be optional and could be repeated.
 Before running the script, put all xml files to be included in the csv into a folder.
 Enter the path for that folder in line 10.
 """
-
 import os
 import xml.etree.ElementTree as ET
 import csv
@@ -19,11 +18,12 @@ import csv
 os.chdir('INSERT PATH TO FOLDER WITH XML HERE')
 
 # make csv file to save data to
-csv_file = open('../combined-xml.csv', 'w', newline = '', encoding = 'UTF8')
+csv_file = open('../combined-xml.csv', 'w', newline='', encoding='UTF-8')
 csvwriter = csv.writer(csv_file)
 
 # add header row to the csv file
-csvwriter.writerow(['title', 'identifier', 'source', 'coverage', 'date', 'publisher', 'description', 'subject', 'altid'])
+csvwriter.writerow(['title', 'identifier', 'source', 'coverage', 'date', 'publisher', 'description',
+                    'subject', 'altid'])
 
 # iterate over each xml file and create a row in the csv file
 for file in os.listdir('.'):
@@ -42,11 +42,12 @@ for file in os.listdir('.'):
         if title is None:
             title = "N/A"
         else:
-            # find all instances of title, temporarily save to a list, and then combine all titles from the list into a single string with a | between each title.
+            # find all instances of title, temporarily save to a list, and then combine all titles from the list
+            # into a single string with a | between each title.
             title_list = []
             for title in dc.findall('title'):
                 title_list.append(title.text)
-                # if a title element is present but empty, it will return None which will give an error when try to join.
+                # if a title element is empty, it will return None which will give an error when try to join.
                 # remove None from the list and display a message in the terminal so we know there are blanks.
                 if None in title_list:
                     title_list.remove(None)
@@ -65,7 +66,6 @@ for file in os.listdir('.'):
                     id_list.remove(None)
                     print("identifier has empty tags")
                 id = ' | '.join(id_list)
- 
 
         source = dc.findtext('source')
         if source is None:
@@ -126,7 +126,6 @@ for file in os.listdir('.'):
                     desc_list.remove(None)
                     print("description has empty tags")
                 desc = ' | '.join(desc_list)
-
        
         sub = dc.findtext('subject')
         if sub is None:
@@ -151,12 +150,11 @@ for file in os.listdir('.'):
                     altid_list.remove(None)
                     print("identifier.alternate has empty tags")
                 altid = ' | '.join(altid_list)                
-                
 
-    #Write all the values for the xml file to a row in the csv file
+    # Write all the values for the xml file to a row in the csv file
     csvwriter.writerow([title, id, source, cov, date, pub, desc, sub, altid])
 
 # close csv file
-csv_file.close
+csv_file.close()
 
 print("Done!")
