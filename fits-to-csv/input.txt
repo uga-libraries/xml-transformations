@@ -1,0 +1,44 @@
+This is the structure of the xml input being transformed:
+
+	combined-fits
+		fits 
+			identification
+	    		identity format="WordPerfect Document" mimetype="application/vnd.wordperfect" toolname="FITS" toolversion="1.2.0"
+	      			tool toolname="Droid" toolversion="6.3"
+	      			tool toolname="file utility" toolversion="5.11"
+	      			version toolname="Droid" toolversion="6.3"
+	      			externalIdentifier toolname="Droid" toolversion="6.3" type="puid"
+	   			fileinfo
+	    			filepath toolname="OIS File Information" toolversion="0.2" status="SINGLE_RESULT"
+	    			filename toolname="OIS File Information" toolversion="0.2" status="SINGLE_RESULT"
+	    			size toolname="OIS File Information" toolversion="0.2" status="SINGLE_RESULT"
+	    			md5checksum toolname="OIS File Information" toolversion="0.2" status="SINGLE_RESULT"
+	    			fslastmodified toolname="OIS File Information" toolversion="0.2" status="SINGLE_RESULT"
+	  			filestatus
+	  			metadata
+	  			statistics
+		  			tool toolname="MediaInfo" toolversion="0.7.75" status="did not run" 
+		    		tool toolname="OIS Audio Information" toolversion="0.1" status="did not run" 
+		    		tool toolname="ADL Tool" toolversion="0.1" status="did not run" 
+		    		tool toolname="VTT Tool" toolversion="0.1" status="did not run" 
+		    		tool toolname="Droid" toolversion="6.3" executionTime="31" 
+		    		tool toolname="Jhove" toolversion="1.16" executionTime="96" 
+		    		tool toolname="file utility" toolversion="5.11" executionTime="72" 
+		    		tool toolname="Exiftool" toolversion="10.00" executionTime="143" 
+		    		tool toolname="NLNZ Metadata Extractor" toolversion="3.6GA" status="did not run" 
+		    		tool toolname="OIS File Information" toolversion="0.2" executionTime="27" 
+		    		tool toolname="OIS XML Metadata" toolversion="0.2" status="did not run" 
+		    		tool toolname="ffident" toolversion="0.2" executionTime="24" 
+		    		tool toolname="Tika" toolversion="1.10" executionTime="33" 
+	  	
+
+
+This is the structure of the cvs output for each xml document:
+
+	file_path,puid,format_name,format_version,mime_type,date_last_modified
+
+
+
+Sample row from csv file:
+
+	../rbrl-038-er-000001_Autobiography/objects/MODCON.1,x-fmt/44,WordPerfect Document,6.0,application/vnd.wordperfect,1995

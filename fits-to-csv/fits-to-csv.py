@@ -1,30 +1,39 @@
-# Written for Python 3.7.1.
-# Script to select specified content from each FITS xml metadata file in a target directory and output that content to one combined csv file with one row per xml file.
-# Takes two arguments: 1) script name (xml_to_csv.py) and 2) target directory containing xml files
-import os
+"""Extracts portions of data from FITS XML files and saves to a CSV spreadsheet.
+
+This script was created for a format analysis project.
+It gets format information for each file in the FITS XML and saves it as a row in a CSV.
+
+Parameters:
+    * target_directory: the path to the folder containing the FITS XML files
+
+Returns:
+    The output is one CSV file (combined-file-formats.csv) with data from every XML in the folder,
+    saved to a folder (csv_output) in the parent folder of the folder with the FITS XML.
+"""
 import os.path
 import xml.etree.ElementTree as ET
 import csv
 from datetime import datetime
 from sys import argv
 
-errors = []     # create a variable to hold error messages
-if len(argv) == 2:        # if we are passed two arguments
-    if os.path.exists(argv[1]):     # check if target directory exists
-        if os.path.isdir(argv[1]):  # check if target directory is a directory
+# Check if the required argument target directory is a directory and is a valid path.
+# If not, prints an error and exits the script.
+errors = []
+if len(argv) == 2:
+    if os.path.exists(argv[1]):
+        if os.path.isdir(argv[1]):
             target_directory = argv[1]
         else:
-            errors.append(f'Target directory "{argv[1]}" is not a directory.')  # if not a directory, add to error messages
+            errors.append(f'Target directory "{argv[1]}" is not a directory.')
     else:
-        errors.append(f'Target directory "{argv[1]}" does not exist.')  # if it does not exist, add to error messages
+        errors.append(f'Target directory "{argv[1]}" does not exist.')
 else:
     print("Please specify a target directory")
     exit()
-
-if len(errors) > 0:     # if there are errors, print each error message
-  for error in errors:
-    print(error)
-    exit()
+if len(errors) > 0:
+    for error in errors:
+        print(error)
+        exit()
 
 print("Converting xml data to csv...")
 
@@ -35,7 +44,7 @@ os.chdir(target_directory)
 os.mkdir('../csv_output')
 
 # open csv file for writing
-csv_file = open('../csv_output/combined-file-formats.csv', 'w', newline = '', encoding = 'UTF8')
+csv_file = open('../csv_output/combined-file-formats.csv', 'w', newline='', encoding='UTF8')
 
 # create csv writer object
 csvwriter = csv.writer(csv_file)
@@ -46,7 +55,7 @@ csvwriter.writerow(['file_path', 'puid', 'format_name', 'format_version', 'mime_
 # iterate over files in target directory
 for file in os.listdir(target_directory):
     # parse XML file and get root of tree
-    ET.register_namespace('',"http://hul.harvard.edu/ois/xml/ns/fits/fits_output")
+    ET.register_namespace('', "http://hul.harvard.edu/ois/xml/ns/fits/fits_output")
     tree = ET.parse(file)
     root = tree.getroot()
 
@@ -64,18 +73,20 @@ for file in os.listdir(target_directory):
             puid_list = []
             for externalIdentifier in fits.findall('.//{http://hul.harvard.edu/ois/xml/ns/fits/fits_output}externalIdentifier'):
                 puid_list.append(externalIdentifier.text)
-                # check if there are empty externalIdentifier elements, which will return value of 'None', and remove them from the list ('None' values cannot be converted to strings in next step)
-                if None in puid_list: puid_list.remove(None)
+                # check if there are empty externalIdentifier elements, which will return value of 'None',
+                # and remove them from the list ('None' values cannot be converted to strings in next step)
+                if None in puid_list:
+                    puid_list.remove(None)
                 puid = ' | '.join(puid_list)
 
         # find all identified format names and mime types and combine into a list
         format_name_list = []
         mime_type_list = []
         for identity in fits.findall('.//{http://hul.harvard.edu/ois/xml/ns/fits/fits_output}identity'):
-                format_name_list.append(identity.attrib['format'])
-                format_name = ' | '.join(format_name_list)
-                mime_type_list.append(identity.attrib['mimetype'])
-                mime_type = ' | '.join(mime_type_list)
+            format_name_list.append(identity.attrib['format'])
+            format_name = ' | '.join(format_name_list)
+            mime_type_list.append(identity.attrib['mimetype'])
+            mime_type = ' | '.join(mime_type_list)
 
         # check if version element is present in fits record; if not, returned value will be "version_unknown"
         format_version = fits.findtext('.//{http://hul.harvard.edu/ois/xml/ns/fits/fits_output}version')
@@ -85,8 +96,10 @@ for file in os.listdir(target_directory):
             format_version_list = []
             for version in fits.findall('.//{http://hul.harvard.edu/ois/xml/ns/fits/fits_output}version'):
                 format_version_list.append(version.text)
-                # check if there are empty version elements, which will return value of 'None', and remove them from the list ('None' values cannot be converted to strings in next step)
-                if None in format_version_list: format_version_list.remove(None)
+                # check if there are empty version elements, which will return value of 'None',
+                # and remove them from the list ('None' values cannot be converted to strings in next step)
+                if None in format_version_list:
+                    format_version_list.remove(None)
                 format_version = ' | '.join(format_version_list)
 
         # use date last modified as identified by the file system unix time stamp
@@ -98,5 +111,5 @@ for file in os.listdir(target_directory):
         csvwriter.writerow([file_path, puid, format_name, format_version, mime_type, date_last_modified])
 
 # close csv file
-csv_file.close
+csv_file.close()
 print("Script complete")
