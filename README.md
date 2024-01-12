@@ -63,3 +63,8 @@ and export it to either a CSV file or EAD file(s).
 The exception is xml-element-value-replacement.py, which updates the value of an element in an XML file.
 
 See the comments at the top of each script for further details.
+
+## Author
+
+The primary author was Adriane Hanson, Head of Digital Stewardship at the University of Georgia Libraries,
+with contributions from Brandon Pieczko, Digital Archivist at the Russell Library.
