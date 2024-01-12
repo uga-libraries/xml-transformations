@@ -1,11 +1,14 @@
-# Purpose: transform a group of xml files into EAD finding aids.
+"""Transform each Dublin Core XML in a folder into an EAD finding aid.
 
-"""
-This script was used to create batch create an EAD finding aid for each map that was described individually in a database. The database exported one xml file per copy of each map.
+This script was used to create batch create an EAD finding aid for each map described in a database.
+The database exported one xml file per copy of each map.
 
-The xml this script is designed for had all elements as direct children of the root. Some elements were optional and some could be repeated.
+The xml this script is designed for had all elements as direct children of the root.
+Some elements were optional and some could be repeated.
     
-Before running the script, put all xml files to be included in the csv into a folder. Enter the path for that folder in line 18. Also enter the path for the xslt processor and xslt stylesheet (lines 20-21).
+Before running the script, put all xml files to be included in the csv into a folder.
+Enter the path for that folder in line 18.
+Also enter the path for the xslt processor and xslt stylesheet (lines 20-21).
 """
 
 import os
