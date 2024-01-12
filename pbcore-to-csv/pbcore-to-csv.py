@@ -15,10 +15,8 @@ import re
 import xml.etree.ElementTree as ET
 from sys import argv
 
-
-# check arguments for errors
-# must be two (script name and target directory) and target directory must be a valid directory
-# saves errors to a list so all possible errors may be checked for before quiting the script
+# Check if the required argument target directory is a directory and is a valid path.
+# If not, prints an error and exits the script.
 errors = []
 if len(argv) == 2:
     if os.path.exists(argv[1]):
@@ -30,14 +28,11 @@ if len(argv) == 2:
         errors.append(f'Target directory "{argv[1]}" is not a valid path.')
 else:
     errors.append('Script usage is not correct.')
-
-# if there are errors, print each error message and quit the script
 if len(errors) > 0:     
     for error in errors:
         print(error)
     print("\nScript usage: python3 '/path/pbcore_to_csv.py' 'path/target_directory'")
     exit()
-
 
 print("\nData conversion in progress...")
 
@@ -49,20 +44,21 @@ if not os.path.exists('../csv_output'):
     os.mkdir('../csv_output')
 
 # make csv file to save output to named "combined-pbcore-records.csv"
-csv_file = open('../csv_output/combined-pbcore-records.csv', 'w', newline = '', encoding = 'UTF8')
+csv_file = open('../csv_output/combined-pbcore-records.csv', 'w', newline='', encoding='UTF8')
 
 # create csv writer object
 csvwriter = csv.writer(csv_file)
 
 # write header row to csv file
-csvwriter.writerow(['id', 'formatDuration', 'formatMediaType', 'formatGenerations', 'dateCreated', 'formatDigital', 'formatStandard', 'formatFileSize', 'formatTracks'])
+csvwriter.writerow(['id', 'formatDuration', 'formatMediaType', 'formatGenerations', 'dateCreated',
+                    'formatDigital', 'formatStandard', 'formatFileSize', 'formatTracks'])
 
 # create dictionary of namespace prefixes so that 'pbcore' prefix can be used in xpath below
 ns = {'pbcore': 'http://www.pbcore.org/PBCore/PBCoreNamespace.html'}
 
-
 # for each file in the directory, get values from select elements, reformat if needed, and save the results to variables
-# if reformatting requires regular expressions, will save error message to variable if the pattern cannot be matched so script can continue running for other files and to alert staff
+# if reformatting requires regular expressions, will save error message to variable if the pattern cannot be matched
+# so script can continue running for other files and to alert staff
 # then write all of the values from the variables to a row in the csv file
 for file in os.listdir(target_directory):
 
@@ -71,7 +67,7 @@ for file in os.listdir(target_directory):
         continue
     
     # parse xml file and get the root element
-    ET.register_namespace('',"http://www.pbcore.org/PBCore/PBCoreNamespace.html")
+    ET.register_namespace('', "http://www.pbcore.org/PBCore/PBCoreNamespace.html")
     tree = ET.parse(file)
     root = tree.getroot()
     
@@ -132,9 +128,10 @@ for file in os.listdir(target_directory):
     formatTracks = root.find('./pbcore:instantiationTracks', ns).text
     
     # write selected values from the variables to a row in the csv file
-    csvwriter.writerow([id, formatDuration, formatMediaType, formatGenerations, dateCreated, formatDigital, formatStandard, formatFileSize, formatTracks])   
+    csvwriter.writerow([id, formatDuration, formatMediaType, formatGenerations, dateCreated,
+                        formatDigital, formatStandard, formatFileSize, formatTracks])
 
 # close csv file
-csv_file.close
+csv_file.close()
 
 print("Script complete")
