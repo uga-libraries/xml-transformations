@@ -1,5 +1,11 @@
-# xml-transformations
-Python scripts for working with XML.
+# XML Transformations
+
+## Overview
+
+Python scripts for working with XML, including transforming the data to CSVs, to EAD, and update values.
+These were quickly developed for a one-time use, and are retained as a starting point for future scripts.
+
+See also the FITS to preservation.xml transformation in [General AIP script](https://github.com/uga-libraries/general-aip)
 
 ## Multiple FITS XML to CSV
 Takes a folder of File Information Tool Set (FITS) xml metadata files and saves the values from selected elements to a csv file with one row per xml file. Created for a file format analysis project.
