@@ -7,6 +7,54 @@ These were quickly developed for a one-time use, and are retained as a starting 
 
 See also the FITS to preservation.xml transformation in [General AIP script](https://github.com/uga-libraries/general-aip)
 
+## Getting Started
+
+### Dependencies
+
+Most of these scripts only use standard Python libraries.
+The ElementTree library is used for working with the XML.
+
+xmls-to-eads.py uses Saxon for XSLT transformations: [https://www.saxonica.com/](https://www.saxonica.com/)
+
+### Installation
+
+See the example input in each script's folder for guidance on how input should be formatted.
+
+The values for variables in a few of the scripts must be edited prior to running them.
+
+xmls-to-csv.py
+   * Replace the path in os.chdir() with the folder containing the XML (line 16)
+
+xmls-to-ead.py
+   * Variable xml_directory (line 17): path to the folder containing the XML
+
+xmls-to-eads.py
+   * Variable xml_directory (line 17): path to the folder containing the XML
+   * Variable saxon (line 18): path to Saxon jar file
+   * Variable stylesheet (line 19): path to the xml-to-ead.xsl file in this repo
+
+
+### Script Arguments
+
+Some of these scripts require editing the variable within the script (see Installation), 
+rather than getting the values from arguments.
+
+fits-to-csv.py
+   * target_directory (required): folder containing the FITS XML files
+
+pbcore-to-csv.py
+   * target_directory (required): folder containing the PBCore XML files
+
+xml-element-value-replacement.py
+   * xml_folder (required): folder containing the XML to be transformed
+
+### Testing
+
+Run the script on a small amount of your data, so you can easily predict the results, before running on a batch.
+
+These scripts were written before we had procedures for creating testing procedures.
+Additional testing guidance or unit tests will be written if they start getting used again.
+
 ## Multiple FITS XML to CSV
 Takes a folder of File Information Tool Set (FITS) xml metadata files and saves the values from selected elements to a csv file with one row per xml file. Created for a file format analysis project.
 
